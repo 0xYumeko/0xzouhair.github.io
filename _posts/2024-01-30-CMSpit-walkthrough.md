@@ -25,7 +25,7 @@ Two ports are open:
 
 Heading to port 80, we discover the landing page below. After a basic icon check, we confirm this is Cockpit CMS.
 
-![Cockpit CMS Landing Page](/assets/img/untitled%20folder/cms_on_80.png)
+![Cockpit CMS Landing Page](/assets/img/untitled%20folder/cms80.png)
 
 ## 2. Exploitation
 
