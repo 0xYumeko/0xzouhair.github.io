@@ -31,11 +31,11 @@ Heading to port 80, we discover the landing page below. After a basic icon check
 
 Searching for "cockpit" in msfconsole, I identified a promising exploit.
 
-![Cockpit CMS Exploit](/assets/img/untitled folder/cockpit-cms-exploit.png)
+![Cockpit CMS Exploit](/assets/img/untitled folder/exploit.png)
 
 Configuring rhost, lhost, and lport, I executed the exploit successfully. Here's the output.
 
-![User Enumeration](/assets/img/untitled folder/user-enumeration.png)
+![User Enumeration](/assets/img/untitled folder/useren.png)
 
 Next, I selected the 'admin' user and reran the exploit, gaining a shell.
 
