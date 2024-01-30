@@ -1,7 +1,7 @@
 ---
 title: Linux Privilege Escalation
-author: h40huynh
-date: 2022-08-19 11:33:00 +0700
+author: 0xzouhair
+date: 2024-01-28 11:33:00 +0700
 categories: [Network Pentest, Privilege Escalation]
 tags: [Linux, Privesc]
 pin: false
