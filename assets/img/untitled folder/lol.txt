@@ -1,0 +1,12 @@
+stux@ubuntu:~$ ls
+user.txt
+stux@ubuntu:~$ cat user.txt 
+thm{c5fc72c48759318c78ec88a786d7c213da05f0ce}
+stux@ubuntu:~$ sudo -l
+Matching Defaults entries for stux on ubuntu:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User stux may run the following commands on ubuntu:
+    (root) NOPASSWD: /usr/local/bin/exiftool
+stux@ubuntu:~$ 
