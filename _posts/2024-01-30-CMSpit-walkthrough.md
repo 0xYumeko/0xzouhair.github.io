@@ -12,7 +12,9 @@ image:
 ---
 
 **Description:** Dive into the world of web app hacking and privilege escalation with this TryHackMe machine, exploiting recent vulnerabilities.
+
 **Difficulty:** Medium
+
 **Machine Link:** [CMSpit on TryHackMe](https://tryhackme.com/room/cmspit)
 
 ## 1. Enumeration
@@ -20,7 +22,7 @@ image:
 ![Nmap Scan Results](/assets/img/untitled folder/nmapscan.png)
 
 Two ports are open:
-- 22 [SSH on Ubuntu]
+- 22 [SSH]
 - 80 [HTTP]
 
 Heading to port 80, we discover the landing page below. After a basic icon check, we confirm this is Cockpit CMS.
@@ -49,7 +51,7 @@ Accessing user stux’s homepage, I stumbled upon an intriguing dbshell file. Ex
 
 ![Home Directory Contents](/assets/img/untitled folder/db.png)
 
-Eager to progress, I tested the discovered password and successfully gained access. Running `sudo -l` provided an interesting output:
+I tested the discovered password and successfully gained access. Running `sudo -l` provided an interesting output:
 
 ![Stux Permissions](/assets/img/untitled folder/stux.png)
 
