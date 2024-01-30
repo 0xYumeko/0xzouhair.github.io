@@ -39,7 +39,7 @@ Configuring rhost, lhost, and lport, I executed the exploit successfully. Here's
 
 Next, I selected the 'admin' user and reran the exploit, gaining a shell.
 
-![Getting Shell Access](/assets/img/untitled folder/getting-shell.png)
+![Getting Shell Access](/assets/img/untitled folder/shell.png)
 
 ## 3. Privilege Escalation
 
@@ -47,11 +47,11 @@ Now operating as www-data, I navigated to the home directory and discovered a us
 
 Accessing user stux’s homepage, I stumbled upon an intriguing dbshell file. Examining its contents revealed the second flag and what appears to be a password.
 
-![Home Directory Contents](/assets/img/untitled folder/dboutput.png)
+![Home Directory Contents](/assets/img/untitled folder/db.png)
 
 Eager to progress, I tested the discovered password and successfully gained access. Running `sudo -l` provided an interesting output:
 
-![Stux Permissions](/assets/img/untitled folder/stux-permissions.png)
+![Stux Permissions](/assets/img/untitled folder/stux.png)
 
 The discovered permissions open up new avenues for privilege escalation. Let's leverage this and continue the exploration!
 
