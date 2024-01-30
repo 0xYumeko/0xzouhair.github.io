@@ -25,7 +25,7 @@ Two ports are open:
 - 22 [SSH]
 - 80 [HTTP]
 
-Heading to port 80, we discover the landing page below. After a basic icon check, we confirm this is Cockpit CMS.
+At port 80, I spot Cockpit CMS on the landing page.
 
 ![Cockpit CMS Landing Page](/assets/img/untitled%20folder/cms80.png)
 
