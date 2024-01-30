@@ -2,8 +2,8 @@
 title: THM CMSpit Walkthrough
 author: 0xzouhair
 date: 2024-01-30 11:33:00 +0700
-categories: [Network Pentest, Privilege Escalation]
-tags: [Linux, Privesc]
+categories: [TryHackMe, Privilege Escalation]
+tags: [THM, Linux, Privesc]
 pin: false
 math: true
 mermaid: true
