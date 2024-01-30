@@ -1,7 +1,7 @@
 ---
 title: Port Redirection and Tunneling
 author: 0xzouhair
-date: 2022-08-23 11:33:00 +0700
+date: 2024-01-28 11:30:00 +0700
 categories: [Network Pentest, Post Exploitaion]
 tags: [Tunneling]
 pin: false
