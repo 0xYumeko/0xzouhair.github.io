@@ -61,6 +61,8 @@ The discovered permissions open up new avenues for privilege escalation. Let's l
 
 With the acquired sudo permissions for user `stux`, After a brief search, I stumbled upon this exploit: [CVE-2021-22204 ExifTool](https://github.com/convisolabs/CVE-2021-22204-exiftool)
 
+The exploit requires some prerequisites:
+
 ```bash
 sudo apt install djvulibre-bin exiftool
 ```
