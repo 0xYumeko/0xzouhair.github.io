@@ -8,7 +8,7 @@ pin: false
 math: true
 mermaid: true
 image:
-  path: /assets/img/untitled folder/banner.jpg
+  path: /assets/img/untitled%20folder/banner.jpg
 ---
 
 **Description:** Dive into the world of web app hacking and privilege escalation with this TryHackMe machine, exploiting recent vulnerabilities.
@@ -19,7 +19,7 @@ image:
 
 ## 1. Enumeration
 
-![Nmap Scan Results](/assets/img/untitled folder/nmapscan.png)
+![Nmap Scan Results](/assets/img/untitled%20folder/nmapscan.png)
 
 Two ports are open:
 - 22 [SSH]
@@ -33,15 +33,15 @@ At port 80, I spot Cockpit CMS on the landing page.
 
 Searching for "cockpit" in msfconsole, I identified a promising exploit.
 
-![Cockpit CMS Exploit](/assets/img/untitled folder/exploit.png)
+![Cockpit CMS Exploit](/assets/img/untitled%20folder/exploit.png)
 
 Configuring rhost, lhost, and lport, I executed the exploit successfully. Here's the output.
 
-![User Enumeration](/assets/img/untitled folder/useren.png)
+![User Enumeration](/assets/img/untitled%20folder/useren.png)
 
 Next, I selected the 'admin' user and reran the exploit, gaining a shell.
 
-![Getting Shell Access](/assets/img/untitled folder/shell.png)
+![Getting Shell Access](/assets/img/untitled%20folder/shell.png)
 
 ## 3. Privilege Escalation
 
@@ -49,11 +49,11 @@ Now operating as www-data, I navigated to the home directory and discovered a us
 
 Accessing user stux’s homepage, I stumbled upon an intriguing dbshell file. Examining its contents revealed the second flag and what appears to be a password.
 
-![Home Directory Contents](/assets/img/untitled folder/db.png)
+![Home Directory Contents](/assets/img/untitled%20folder/db.png)
 
 I tested the discovered password and successfully gained access. Running `sudo -l` provided an interesting output:
 
-![Stux Permissions](/assets/img/untitled folder/stux.png)
+![Stux Permissions](/assets/img/untitled%20folder/stux.png)
 
 With the acquired sudo permissions for user `stux`, After a brief search, I stumbled upon this exploit: [CVE-2021-22204 ExifTool](https://github.com/convisolabs/CVE-2021-22204-exiftool)
 
@@ -78,4 +78,4 @@ sudo /usr/local/bin/exiftool image.jpg
 
 Executing this payload triggered a successful root shell!
 
-![Root Shell](assets/img/untitled folder/Rootshell.png)
+![Root Shell](assets/img/untitled%20folder/Rootshell.png)
