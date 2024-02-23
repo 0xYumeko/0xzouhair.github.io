@@ -78,4 +78,4 @@ sudo /usr/local/bin/exiftool image.jpg
 
 Executing this payload triggered a successful root shell!
 
-![Root Shell](assets/img/untitled%20folder/Rootshell.png)
+![Root Shell](/assets/img/untitled%20folder/Rootshell.png)
